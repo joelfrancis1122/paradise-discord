@@ -168,7 +168,7 @@ export default function Home() {
                                     Join Paradise Today
                                 </h3>
                                 <p className="text-sm text-white/80">
-                                    <span className="bg-[#5865F2] px-1 rounded text-white shadow-[0_0_5px_rgba(88,101,242,0.5)]">
+                                    <span className="bg-[#8b5cf6] px-1 rounded text-white shadow-[0_0_5px_rgba(88,101,242,0.5)]">
                                         65,593
                                     </span>{" "}
                                     members online
