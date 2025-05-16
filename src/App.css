@@ -1,0 +1,61 @@
+@tailwind utilities;
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #0f1520;
+  @apply text-white;
+}
+
+/* Custom Container */
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 8px rgba(54, 179, 232, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(54, 179, 232, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(54, 179, 232, 0.6);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  /* Blending for logo */
+  .blend-overlay {
+    @apply opacity-90 mix-blend-overlay;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    @apply px-6;
+  }
+}
