@@ -60,9 +60,9 @@ export default function Home() {
             console.error("Failed to fetch items:", error)
             // Mock data fallback
             setItems([
-                { id: "1", name: "VIP Role", price: 4.99, type: "roles" ,image: pic11},
-                { id: "2", name: "Premium Role", price: 9.99, type: "roles" ,image: pic22},
-                { id: "3", name: "Elite Role", price: 19.99, type: "roles",image: pic33 },
+                { id: "1", name: "VIP Role", price: 4.99, type: "roles", image: pic11 },
+                { id: "2", name: "Premium Role", price: 9.99, type: "roles", image: pic22 },
+                { id: "3", name: "Elite Role", price: 19.99, type: "roles", image: pic33 },
                 { id: "4", name: "1 Month Boost", price: 4.99, type: "boosters", image: pic1 },
                 { id: "5", name: "3 Month Boost", price: 12.99, type: "boosters", image: pic2 },
                 { id: "6", name: "6 Month Boost", price: 24.99, type: "boosters", image: pic3 },
@@ -140,14 +140,15 @@ export default function Home() {
 
             {/* Logo and Join Section */}
             <div className="container mx-auto flex flex-col items-center justify-center py-12 relative">
-                <div className="relative w-full max-w-2xl aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(139,92,246,0.8)] bg-gradient-to-b from-[#4c1d95]/30 to-[#7e22ce]/30 backdrop-blur-2xl border border-[#c4b5fd]/30 md:animate-glow-pulse [mask-image:_linear-gradient(to_bottom,white_50%,transparent_100%)]">
+                <div className="absolute inset-0 mix-blend-soft-light opacity-100">
                     <img
                         src={pic || ""}
                         alt="paradiselize Logo"
-                        className="object-cover w-full h-full mix-blend-overlay opacity-90 transition-transform duration-500 hover:scale-110"
+                        className="object-cover w-full h-full transition-transform transform duration-1000 hover:scale-105 will-change-transform"
                     />
-                    <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(54,179,232,0.25)_0%,transparent_70%)] opacity-50 animate-pulse" />
                 </div>
+
+
 
                 <div className="flex items-center gap-4 mt-4">
                     <div className="bg-gradient-to-r from-[#4c1d95]/30 to-[#7e22ce]/30 backdrop-blur-2xl border border-[#c4b5fd]/30 rounded-2xl p-4 flex items-center gap-3 shadow-[0_0_15px_rgba(139,92,246,0.6)] relative overflow-hidden">
@@ -257,13 +258,13 @@ export default function Home() {
                                         >
                                             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
                                             <div className="bg-[#7e22ce] p-3 rounded-full mb-3 shadow-[0_0_10px_rgba(139,92,246,0.7)]">
-                                                 {item.image && (
-                                                        <img
-                                                            src={item.image}
-                                                            alt="roles Icon"
-                                                            className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
-                                                        />
-                                                    )}
+                                                {item.image && (
+                                                    <img
+                                                        src={item.image}
+                                                        alt="roles Icon"
+                                                        className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
+                                                    />
+                                                )}
                                             </div>
                                             <h3 className="font-bold text-lg text-white mb-2 tracking-widest [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                                                 {item.name}
@@ -309,13 +310,13 @@ export default function Home() {
                                         >
                                             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
                                             <div className="[0_0_20px_5px_rgba(139,92,246,0.9)] p-3 rounded-full mb-3 shadow-[0_0_10px_rgba(59,130,246,0.7)]">
-                                                    {item.image && (
-                                                        <img
-                                                            src={item.image}
-                                                            alt="Booster Icon"
-                                                            className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
-                                                        />
-                                                    )}
+                                                {item.image && (
+                                                    <img
+                                                        src={item.image}
+                                                        alt="Booster Icon"
+                                                        className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
+                                                    />
+                                                )}
 
 
                                             </div>
@@ -366,11 +367,11 @@ export default function Home() {
                                         >
                                             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
                                             <div className="bg-pink-500 p-3 rounded-full mb-3 shadow-[0_0_10px_rgba(236,72,153,0.7)]">
-                                                        <img
-                                                            src={gift}
-                                                            alt="Booster Icon"
-                                                            className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
-                                                        />
+                                                <img
+                                                    src={gift}
+                                                    alt="Booster Icon"
+                                                    className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
+                                                />
                                             </div>
                                             <h3 className="font-bold text-lg text-white mb-2 tracking-widest [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                                                 {item.name}
