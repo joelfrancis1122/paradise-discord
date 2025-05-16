@@ -236,7 +236,7 @@ export default function Home() {
                     {activeTab === "roles" && (
                         <div className="animate-fade-in">
                             <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-2 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
-                                paradise
+                                Grab roles
                             </h1>
                             <h2 className="text-xl font-semibold mb-4 text-white/90 [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                                 Welcome to our store!
