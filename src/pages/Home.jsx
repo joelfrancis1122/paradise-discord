@@ -1,4 +1,3 @@
-"use client" // Remove if not using Next.js
 
 import { Shield, Zap, Gift, Globe } from "lucide-react"
 import { Link } from "react-router-dom"
@@ -11,9 +10,8 @@ import pic11 from "../../public/11.png"
 import pic22 from "../../public/22.png"
 import pic33 from "../../public/33.png"
 import gift from "../../public/gift.png"
-import axios from "axios"
+import logo from "../assets/2Q.png"
 
-// Add these CSS animations
 const styles = `
   @keyframes glow {
     0% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
@@ -51,14 +49,8 @@ export default function Home() {
     const [items, setItems] = useState([])
     const [cart, setCart] = useState({ items: [], total: 0 })
 
-    // Fetch items from RESTAURANT-SERVER
     const fetchItems = async () => {
         try {
-            console.log(response, "items")
-            setItems(response.data)
-        } catch (error) {
-            console.error("Failed to fetch items:", error)
-            // Mock data fallback
             setItems([
                 { id: "1", name: "VIP Role", price: 4.99, type: "roles", image: pic11 },
                 { id: "2", name: "Premium Role", price: 9.99, type: "roles", image: pic22 },
@@ -70,6 +62,9 @@ export default function Home() {
                 { id: "8", name: "$25 Gift Card", price: 25.0, type: "giftcards" },
                 { id: "9", name: "$50 Gift Card", price: 50.0, type: "giftcards" },
             ]);
+
+        } catch (error) {
+            console.error("Failed to get items:", error)
 
         }
     }
@@ -99,13 +94,7 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-[#0a0d16] bg-[url('/background.webp')] bg-cover bg-center bg-no-repeat text-white font-sans relative overflow-hidden">
-            {/* Particle Overlay */}
-            <div className="absolute inset-0 pointer-events-none md:block hidden">
-                <div className="absolute top-10 left-20 w-2 h-2 bg-white/60 rounded-full animate-particle delay-100" />
-                <div className="absolute top-40 right-30 w-3 h-3 bg-[#36b3e8]/70 rounded-full animate-particle delay-300" />
-                <div className="absolute bottom-20 left-40 w-2 h-2 bg-[#9333ea]/60 rounded-full animate-particle delay-500" />
-                <div className="absolute bottom-30 right-20 w-3 h-3 bg-white/50 rounded-full animate-particle delay-700" />
-            </div>
+
 
             {/* Magical Starfield */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -133,20 +122,32 @@ export default function Home() {
                 >
                     Glammy's Bag
                     <span className="ml-2 text-xs">
-                        {cart.items.length} item{cart.items.length !== 1 ? "s" : ""} for ${cart.total.toFixed(2)} USD
+                        {cart.items.length} item{cart.items.length !== 1 ? "s" : ""}
                     </span>
                 </button>
             </header>
 
             {/* Logo and Join Section */}
-            <div className="container mx-auto flex flex-col items-center justify-center py-12 relative">
-                <div className="absolute inset-0 mix-blend-soft-light opacity-100">
+            <div className="container mx-auto flex flex-col items-center justify-center py-30 relative">
+                <div className="absolute inset-0 opacity-100">
+                    {/* Background Image with soft-light blending */}
+                    <div className="absolute inset-0 mix-blend-soft-light">
+                        <img
+                            src={pic || ""}
+                            alt="paradiselize Logo"
+                            className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
+                        />
+                    </div>
+
+                    {/* Overlay Image without blending effect */}
                     <img
-                        src={pic || ""}
-                        alt="paradiselize Logo"
-                        className="object-cover w-full h-full transition-transform transform duration-1000 hover:scale-105 will-change-transform"
+                        src={logo || ""}
+                        alt="Overlay Icon"
+                        className="absolute left-100 top-1/2 transform -translate-y-1/2 w-40 h-40 rounded-full border-4 border-white shadow-lg object-cover z-10"
                     />
                 </div>
+
+
 
 
 
@@ -295,7 +296,8 @@ export default function Home() {
                                 Enhance your server experience!
                             </h2>
                             <p className="mb-4 text-white/80">
-                                This ad-free server thrives with your help. All donations support upgrades & growth!
+                                Nonrefundable. Instant delivery. Contact Glammy on Discord if issues arise.
+
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                                 {items
@@ -352,7 +354,7 @@ export default function Home() {
                                 Perfect gifts for your friends!
                             </h2>
                             <p className="mb-4 text-white/80">
-                                Nonrefundable. Instant delivery. Contact Lawrence on Discord if issues arise.
+                                Nonrefundable. Instant delivery. Contact Glammy on Discord if issues arise.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                                 {items
