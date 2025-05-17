@@ -8,7 +8,7 @@ export default function Footer() {
                 <h3 className="text-xl font-extrabold text-[#a78bfa] mb-4 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
                     About Us
                 </h3>
-                <p className="text-white/80"> <strong>Mirage</strong>  is one of the most advanced, fastest-growing, and uniquely crafted communities on Discord. Built with passion and precision, Mirage brings together users from all walks of life to connect, play, and thrive in a vibrant, welcoming atmosphere. Whether you're here for games, social interaction, or just a place to chill, Mirage evolves constantly to deliver something truly special</p>
+                <p className="text-white/80"> <strong>Mirage</strong>  is one of the most advanced, fastest-growing, and uniquely crafted communities on Discord. Built with passion and precision, Mirage brings together users from all walks of life to connect, play, and thrive in a vibrant, welcoming atmosphere. Whether you're here for games, social interaction, or just a place to chill, Mirage evolves constantly to deliver something truly special ❤️</p>
             </div>
             <div>
                 <h3 className="text-xl font-extrabold text-[#a78bfa] mb-4 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
