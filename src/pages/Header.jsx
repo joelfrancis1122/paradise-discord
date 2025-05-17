@@ -1,7 +1,7 @@
 import { Globe } from "lucide-react";
 import { useState } from "react";
 import Cart from "./Cart";
-
+import cartIcon from "/cart.png"
 export default function Header({ cart, removeFromCart, updateCartQuantity, clearCart }) {
     const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -22,13 +22,20 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                 </button>
                 <button
                     onClick={() => setIsCartOpen(true)}
-                    className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-                    aria-label="View Cart"
+                    className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 p-2 rounded-lg flex items-center justify-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] relative"
+                    aria-label={`View Cart (${cart.items.length} item${cart.items.length !== 1 ? "s" : ""})`}
                 >
-                    Glammy's Bag
-                    <span className="ml-2 text-xs">
-                        {cart.items.length} item{cart.items.length !== 1 ? "s" : ""}
-                    </span>
+                    <img
+                        src="/cart.png"
+                        alt="Cart"
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]"
+                    />
+
+                    {cart.items.length > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-[#a78bfa] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-[0_0_5px_rgba(139,92,246,0.7)]">
+                            {cart.items.length}
+                        </span>
+                    )}
                 </button>
             </header>
 
