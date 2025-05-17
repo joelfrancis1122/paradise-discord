@@ -36,6 +36,8 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                             {cart.items.length}
                         </span>
                     )}
+                    &nbsp;
+                    <p>cart</p>
                 </button>
             </header>
 
