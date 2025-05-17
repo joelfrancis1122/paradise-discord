@@ -8,7 +8,7 @@ export default function Footer() {
                 <h3 className="text-xl font-extrabold text-[#a78bfa] mb-4 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
                     About Us
                 </h3>
-                <p className="text-white/80">paradise is one of the oldest and largest socialize servers on Discord.</p>
+                <p className="text-white/80"> <strong>Mirage</strong>  is one of the most advanced, fastest-growing, and uniquely crafted communities on Discord. Built with passion and precision, Mirage brings together users from all walks of life to connect, play, and thrive in a vibrant, welcoming atmosphere. Whether you're here for games, social interaction, or just a place to chill, Mirage evolves constantly to deliver something truly special</p>
             </div>
             <div>
                 <h3 className="text-xl font-extrabold text-[#a78bfa] mb-4 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
@@ -38,7 +38,11 @@ export default function Footer() {
                     Contact Us
                 </h3>
                 <p className="text-white/80 mb-4">
-                    If you have any questions, concerns, or want to contact us, you can do this on our Discord.
+                    Have any questions, suggestions, issues, or concerns? We're here to help. 
+                </p>
+                <p className="text-white/80 mb-4">
+                    Reach out to us anytime at official.mirage.team@gmail.com — we’ll get back to you as soon as possible.
+
                 </p>
                 <a
                     href="https://discord.gg/GerGdy49"
