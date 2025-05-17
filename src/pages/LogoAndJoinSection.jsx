@@ -24,6 +24,7 @@ className="hidden sm:hidden md:block w-30 h-32 md:w-40 md:h-40 rounded-full bord
 </div>
 
 
+
             <div className="flex items-center gap-4 mt-4">
                 <div className="bg-gradient-to-r from-[#4c1d95]/30 to-[#7e22ce]/30 backdrop-blur-2xl border border-[#c4b5fd]/30 rounded-2xl p-4 flex items-center gap-3 shadow-[0_0_15px_rgba(139,92,246,0.6)] relative overflow-hidden">
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 animate-pulse" />
