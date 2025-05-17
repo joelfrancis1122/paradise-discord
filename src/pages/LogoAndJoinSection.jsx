@@ -4,24 +4,24 @@ import pic from "/image.webp";
 export default function LogoAndJoinSection() {
     return (
         <div className="container mx-auto flex flex-col items-center justify-center py-30 relative">
-<div className="absolute inset-0 opacity-100">
-  {/* Background Image with Blend Mode */}
-  <div className="absolute inset-0 mix-blend-soft-light">
-    <img
-      src={pic || ""}
-      alt="paradiselize Logo"
-      className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
-    />
-  </div>
+            <div className="absolute inset-0 opacity-100">
+                {/* Background Image with Blend Mode */}
+                <div className="absolute inset-0 mix-blend-soft-light">
+                    <img
+                        src={pic || ""}
+                        alt="paradiselize Logo"
+                        className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
+                    />
+                </div>
 
-  {/* Flexbox to align icon center vertically, with 100px left gap */}
-  <div className="absolute inset-0 flex items-center pl-[100px]">
-    <img
-      src={logo || ""}
-      alt="Overlay Icon"
-className="hidden sm:hidden md:block w-30 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg object-cover z-10"    />
-  </div>
-</div>
+                {/* Flexbox to align icon center vertically, with 100px left gap */}
+                <div className="absolute inset-0 flex items-center pl-[100px]">
+                    <img
+                        src={logo || ""}
+                        alt="Overlay Icon"
+                        className="hidden sm:hidden md:block w-30 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg object-cover z-10" />
+                </div>
+            </div>
 
 
 
