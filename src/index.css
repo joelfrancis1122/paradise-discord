@@ -34,3 +34,29 @@ body {
   background-color: #0f1520;
   color: white;
 }
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #0f172a; /* Dark background for the scrollbar track */
+    border-radius: 10px; /* Rounded edges for the track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4c1d95; /* Dark purple for the scrollbar thumb */
+    border-radius: 10px; /* Rounded edges for the thumb */
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); /* Subtle glow effect */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7e22ce; /* Lighter purple when hovering */
+}
+
+/* Firefox Scrollbar Styles */
+.custom-scrollbar {
+    scrollbar-width: thin; /* Make the scrollbar thinner */
+    scrollbar-color: #4c1d95 #0f172a; /* Thumb color and track color */
+}
