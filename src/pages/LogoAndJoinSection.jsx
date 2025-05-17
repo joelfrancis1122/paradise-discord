@@ -1,5 +1,5 @@
 import logo from "../assets/2Q.png";
-import pic from "/image.jpg";
+import pic from "/image.webp";
 
 export default function LogoAndJoinSection() {
     return (
