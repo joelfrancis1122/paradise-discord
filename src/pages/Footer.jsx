@@ -37,9 +37,7 @@ export default function Footer() {
                 <h3 className="text-xl font-extrabold text-[#a78bfa] mb-4 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
                     Contact Us
                 </h3>
-                <p className="text-white/80 mb-4">
-                    Have any questions, suggestions, issues, or concerns? We're here to help. 
-                </p>
+             
                 <p className="text-white/80 mb-4">
                     Reach out to us anytime at official.mirage.team@gmail.com — we’ll get back to you as soon as possible.
 
