@@ -1,7 +1,7 @@
 import { Shield, Zap, Gift } from "lucide-react";
-import roles from "/role.png"
-import boost from "/Booster.png"
-import gifticon from "/gifticon.png"
+import roles from "/role.webp"
+import boost from "/Booster.webp"
+import gifticon from "/gifticon.webp"
 export default function Navigation({ activeTab, setActiveTab }) {
     return (
         <div className="md:col-span-1 bg-gradient-to-b from-[#1a0b2e]/80 to-[#4c1d95]/80 backdrop-blur-2xl border border-[#8b5cf6]/30 rounded-2xl p-4 shadow-[0_0_15px_rgba(139,92,246,0.5)] relative overflow-hidden">

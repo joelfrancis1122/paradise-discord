@@ -1,4 +1,4 @@
-import logo from "../assets/2Q.png";
+import logo from "../assets/2Q.webp";
 import pic from "/image.jpg";
 
 export default function LogoAndJoinSection() {

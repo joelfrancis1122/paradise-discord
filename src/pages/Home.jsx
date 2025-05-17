@@ -4,12 +4,12 @@ import LogoAndJoinSection from "./LogoAndJoinSection";
 import MainContent from "./MainContent";
 import Footer from "./Footer";
 import Disclaimer from "./Disclaimer";
-import pic1 from "/2.png";
-import pic2 from "/4.png";
-import pic3 from "/5.png";
-import pic11 from "/11.png";
-import pic22 from "/22.png";
-import pic33 from "/33.png";
+import pic1 from "/2.webp";
+import pic2 from "/4.webp";
+import pic3 from "/5.webp";
+import pic11 from "/11.webp";
+import pic22 from "/22.webp";
+import pic33 from "/33.webp";
 import '../index.css'
 import styles1 from "../assets/style"
 

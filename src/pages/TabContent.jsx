@@ -1,4 +1,4 @@
-import gift from "/gift.png";
+import gift from "/gift.webp";
 
 export default function TabContent({ activeTab, items, addToCart }) {
     return (
