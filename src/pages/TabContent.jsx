@@ -27,7 +27,7 @@ export default function TabContent({ activeTab, items, addToCart }) {
                                     }`}
                                 >
                                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
-                                    <div className="bg-[#7e22ce] p-3 rounded-full mb-3 shadow-[0_0_10px_rgba(139,92,246,0.7)]">
+                                    <div className="p-3 rounded-full mb-3 shadow-[0_0_10px_rgba(139,92,246,0.7)]">
                                         {item.image && (
                                             <img
                                                 src={item.image}
