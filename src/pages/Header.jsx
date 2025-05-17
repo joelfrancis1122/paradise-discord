@@ -12,9 +12,9 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
             <header className="container mx-auto flex items-center justify-between p-4 gap-3 bg-gradient-to-r from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-md border border-[#8b5cf6]/30 rounded-2xl shadow-[0_0_15px_rgba(139,92,246,0.6)] md:animate-glow-pulse">
                 <div className="flex items-center gap-2">
 
-                   <h1 className="text-xl sm:text-2xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] ">
+                   <h2 className="text-xl sm:text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] ">
                         WELCOME!!! To Mirage Store
-                    </h1>
+                    </h2>
                     <img
                         src={starsSparkle}
                         alt="Sparkling Stars"
