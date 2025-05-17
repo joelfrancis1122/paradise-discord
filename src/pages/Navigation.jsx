@@ -1,5 +1,7 @@
 import { Shield, Zap, Gift } from "lucide-react";
-
+import roles from "/role.png"
+import boost from "/Booster.png"
+import gifticon from "/gifticon.png"
 export default function Navigation({ activeTab, setActiveTab }) {
     return (
         <div className="md:col-span-1 bg-gradient-to-b from-[#1a0b2e]/80 to-[#4c1d95]/80 backdrop-blur-2xl border border-[#8b5cf6]/30 rounded-2xl p-4 shadow-[0_0_15px_rgba(139,92,246,0.5)] relative overflow-hidden">
@@ -13,11 +15,15 @@ export default function Navigation({ activeTab, setActiveTab }) {
                     className={`relative flex items-center gap-3 w-full justify-start p-3 text-left rounded-lg transition-all duration-300 ${activeTab === "roles"
                         ? "bg-gradient-to-r from-[#4c1d95]/60 to-[#7e22ce]/60 text-white shadow-[0_0_10px_rgba(139,92,246,0.8)]"
                         : "hover:bg-[#6d28d9]/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.6)] hover:scale-105"
-                    } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
+                        } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
                     aria-label="View Roles"
                     aria-current={activeTab === "roles" ? "true" : "false"}
                 >
-                    <Shield className="h-6 w-6 text-[#a78bfa]" />
+                    <img
+                        src={roles}
+                        alt="Shield Icon"
+                        className="h-6 w-6"
+                    />
                     <span className="text-lg font-medium">Roles</span>
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.3)_0%,transparent_50%)] opacity-0 hover:opacity-30 transition-opacity duration-300" />
                 </button>
@@ -26,11 +32,15 @@ export default function Navigation({ activeTab, setActiveTab }) {
                     className={`relative flex items-center gap-3 w-full justify-start p-3 text-left rounded-lg transition-all duration-300 ${activeTab === "boosters"
                         ? "bg-gradient-to-r from-[#4c1d95]/60 to-[#7e22ce]/60 text-white shadow-[0_0_10px_rgba(139,92,246,0.8)]"
                         : "hover:bg-[#6d28d9]/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.6)] hover:scale-105"
-                    } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
+                        } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
                     aria-label="View Boosters"
                     aria-current={activeTab === "boosters" ? "true" : "false"}
                 >
-                    <Zap className="h-6 w-6 text-[#a78bfa]" />
+                    <img
+                        src={boost}
+                        alt="boost Icon"
+                        className="h-6 w-6"
+                    />
                     <span className="text-lg font-medium">Boosters</span>
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.3)_0%,transparent_50%)] opacity-0 hover:opacity-30 transition-opacity duration-300" />
                 </button>
@@ -39,11 +49,15 @@ export default function Navigation({ activeTab, setActiveTab }) {
                     className={`relative flex items-center gap-3 w-full justify-start p-3 text-left rounded-lg transition-all duration-300 ${activeTab === "giftcards"
                         ? "bg-gradient-to-r from-[#4c1d95]/60 to-[#7e22ce]/60 text-white shadow-[0_0_10px_rgba(139,92,246,0.8)]"
                         : "hover:bg-[#6d28d9]/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.6)] hover:scale-105"
-                    } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
+                        } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
                     aria-label="View Gift Cards"
                     aria-current={activeTab === "giftcards" ? "true" : "false"}
                 >
-                    <Gift className="h-6 w-6 text-[#a78bfa]" />
+                    <img
+                        src={gifticon}
+                        alt="gift Icon"
+                        className="h-6 w-6"
+                    />
                     <span className="text-lg font-medium">Gift Cards</span>
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.3)_0%,transparent_50%)] opacity-0 hover:opacity-30 transition-opacity duration-300" />
                 </button>

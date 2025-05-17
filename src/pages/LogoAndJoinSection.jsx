@@ -4,23 +4,25 @@ import pic from "/image.jpg";
 export default function LogoAndJoinSection() {
     return (
         <div className="container mx-auto flex flex-col items-center justify-center py-30 relative">
-            <div className="absolute inset-0 opacity-100">
-                {/* Background Image with soft-light blending */}
-                <div className="absolute inset-0 mix-blend-soft-light">
-                    <img
-                        src={pic || ""}
-                        alt="paradiselize Logo"
-                        className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
-                    />
-                </div>
+<div className="absolute inset-0 opacity-100">
+  {/* Background Image with Blend Mode */}
+  <div className="absolute inset-0 mix-blend-soft-light">
+    <img
+      src={pic || ""}
+      alt="paradiselize Logo"
+      className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
+    />
+  </div>
 
-                {/* Overlay Image without blending effect */}
-                <img
-                    src={logo || ""}
-                    alt="Overlay Icon"
-                    className="absolute left-100 top-1/2 transform -translate-y-1/2 w-40 h-40 rounded-full border-4 border-white shadow-lg object-cover z-10"
-                />
-            </div>
+  {/* Flexbox to align icon center vertically, with 100px left gap */}
+  <div className="absolute inset-0 flex items-center pl-[100px]">
+    <img
+      src={logo || ""}
+      alt="Overlay Icon"
+className="hidden sm:hidden md:block w-30 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg object-cover z-10"    />
+  </div>
+</div>
+
 
             <div className="flex items-center gap-4 mt-4">
                 <div className="bg-gradient-to-r from-[#4c1d95]/30 to-[#7e22ce]/30 backdrop-blur-2xl border border-[#c4b5fd]/30 rounded-2xl p-4 flex items-center gap-3 shadow-[0_0_15px_rgba(139,92,246,0.6)] relative overflow-hidden">
