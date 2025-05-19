@@ -9,7 +9,7 @@ export default function LogoAndJoinSection() {
                 <div className="absolute inset-0 mix-blend-soft-light">
                     <img
                         src={pic || ""}
-                        alt="paradiselize Logo"
+                        alt="Mirage Logo"
                         className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
                     />
                 </div>
@@ -41,11 +41,11 @@ export default function LogoAndJoinSection() {
                             className="block bg-gradient-to-r from-[#4c1d95]/40 to-[#7e22ce]/40 backdrop-blur-md p-2 rounded-lg transition-all duration-200 hover:bg-[#6d28d9]/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.7)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
                         >
                             <h3 className="font-extrabold text-lg text-white tracking-widest [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
-                                Join Paradise Today
+                                Join Mirage Today
                             </h3>
                             <p className="text-sm text-white/80">
                                 <span className="bg-[#8b5cf6] px-1 rounded text-white shadow-[0_0_5px_rgba(88,101,242,0.5)]">
-                                    65,593
+                                    65,000
                                 </span>{" "}
                                 members online
                             </p>

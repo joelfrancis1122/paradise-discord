@@ -45,20 +45,20 @@ export default function Navigation({ activeTab, setActiveTab }) {
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.3)_0%,transparent_50%)] opacity-0 hover:opacity-30 transition-opacity duration-300" />
                 </button>
                 <button
-                    onClick={() => setActiveTab("giftcards")}
+                    onClick={() => setActiveTab("gifting")}
                     className={`relative flex items-center gap-3 w-full justify-start p-3 text-left rounded-lg transition-all duration-300 ${activeTab === "giftcards"
                         ? "bg-gradient-to-r from-[#4c1d95]/60 to-[#7e22ce]/60 text-white shadow-[0_0_10px_rgba(139,92,246,0.8)]"
                         : "hover:bg-[#6d28d9]/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.6)] hover:scale-105"
                         } focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]`}
                     aria-label="View Gift Cards"
-                    aria-current={activeTab === "giftcards" ? "true" : "false"}
+                    aria-current={activeTab === "gifting" ? "true" : "false"}
                 >
                     <img
                         src={gifticon}
                         alt="gift Icon"
                         className="h-6 w-6"
                     />
-                    <span className="text-lg font-medium">Gift Cards</span>
+                    <span className="text-lg font-medium">Gifting</span>
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.3)_0%,transparent_50%)] opacity-0 hover:opacity-30 transition-opacity duration-300" />
                 </button>
             </div>

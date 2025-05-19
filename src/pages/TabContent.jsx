@@ -46,7 +46,7 @@ export default function TabContent({ activeTab, items, addToCart }) {
                         Welcome to our store!
                     </h2>
                     <p className="mb-4 text-white/80">
-                        We appreciate you checking it out. Buy anything from roles, giftcards, and boosters!
+                        Get instant delivery of purchase. We deeply appreciate your love and kindness for donating !! 💖
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                         {items
@@ -73,7 +73,7 @@ export default function TabContent({ activeTab, items, addToCart }) {
                                     <h3 className="font-bold text-lg text-white mb-2 tracking-widest [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                                         {item.name}
                                     </h3>
-                                    <p className="text-white/80 text-center mb-4">Get access to exclusive channels and perks</p>
+                                    <p className="text-white/80 text-center mb-4">Get access to exclusive perks and features</p>
                                     <p className="font-extrabold text-xl text-white mb-3 [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                                         ${item.price.toFixed(2)}
                                     </p>
@@ -99,7 +99,7 @@ export default function TabContent({ activeTab, items, addToCart }) {
                         Enhance your server experience!
                     </h2>
                     <p className="mb-4 text-white/80">
-                        Nonrefundable. Instant delivery. Contact Glammy on Discord if issues arise.
+                        Power up your journey — unlock boosts and level up fast! 🚀
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                         {items
@@ -155,7 +155,7 @@ export default function TabContent({ activeTab, items, addToCart }) {
                         Perfect gifts for your friends!
                     </h2>
                     <p className="mb-4 text-white/80">
-                        Nonrefundable. Instant delivery. Contact Glammy on Discord if issues arise.
+                        Got a kind heart? Brighten someone's day with a gift card! 💝
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                         {items
