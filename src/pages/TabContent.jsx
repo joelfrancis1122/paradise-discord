@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import gift from "/gift.webp";
 import { toast } from "react-toastify"; 
 
 export default function TabContent({ activeTab, items, addToCart }) {
     const [addedItemId, setAddedItemId] = useState(null);
+useEffect(()=>{
+    console.log("active",activeTab)
 
+})
     const handleAddToCart = (item) => {
         const sound = new Audio("/sounds/magic-chime.mp3");
         sound.play().catch((error) => {
@@ -146,7 +149,7 @@ export default function TabContent({ activeTab, items, addToCart }) {
                 </div>
             )}
 
-            {activeTab === "giftcards" && (
+            {activeTab == "gifting" && (
                 <div className="animate-fade-in">
                     <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-2 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]">
                         Gift Cards
