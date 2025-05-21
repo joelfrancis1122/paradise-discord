@@ -21,7 +21,7 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
     return (
         <div className="p-6">
             <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-8 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] text-center">
-                    Glammy's Bag
+                    Your Bag
             </h1>
 
             {cart.items.length === 0 ? (
