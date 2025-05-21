@@ -27,12 +27,7 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
             {cart.items.length === 0 ? (
                 <div className="bg-gradient-to-br from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-3xl border border-[#8b5cf6]/30 rounded-2xl p-8 shadow-[0_0_20px_rgba(139,92,246,0.7)] text-center">
                     <p className="text-white/80 text-lg mb-4">Your cart is empty.</p>
-                    <Link
-                        to="/"
-                        className="inline-block bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-                    >
-                        Continue Shopping
-                    </Link>
+                    
                 </div>
             ) : (
                 <div className="relative">
