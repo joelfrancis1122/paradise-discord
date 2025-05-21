@@ -1,0 +1,103 @@
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.8); }
+    100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes twinkle {
+    0% { background-color: rgba(255, 255, 255, 0); }
+    50% { background-color: rgba(255, 255, 255, 0.05); }
+    100% { background-color: rgba(255, 255, 255, 0); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-glow-pulse {
+    animation: glow 3s infinite ease-in-out;
+}
+
+.animate-float {
+    animation: float 6s infinite ease-in-out;
+}
+
+.animate-twinkle {
+    animation: twinkle 4s infinite ease-in-out;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.flip-card {
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 450px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    min-height: 450px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, rgba(26, 11, 46, 0.6), rgba(76, 29, 149, 0.6));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+.flip-card-front {
+    transform: rotateY(0deg);
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(to bottom right, rgba(26, 11, 46, 0.8), rgba(76, 29, 149, 0.8)); /* Slightly darker background for contrast */
+}
+.flip-card-front {
+    transform: rotateY(0deg);
+    z-index: 2; /* Front side on top initially */
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(to bottom right, rgba(26, 11, 46, 0.8), rgba(76, 29, 149, 0.8));
+    z-index: 1; /* Back side below initially */
+}
+
+.flip-card.flipped .flip-card-front {
+    z-index: 1; /* Front side below when flipped */
+}
+
+.flip-card.flipped .flip-card-back {
+    z-index: 2; /* Back side on top when flipped */
+}

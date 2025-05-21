@@ -9,7 +9,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
     const [currency, setCurrency] = useState({ symbol: "$", code: "USD" });
     const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
 
-    // Function to close the cart modal
+    
     const closeCart = () => {
         setIsCartOpen(false);
     };
@@ -98,7 +98,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="relative bg-[#0a0d16] rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
                         <button
-                            onClick={closeCart} // Use closeCart here as well
+                            onClick={closeCart} 
                             className="absolute top-4 right-4 text-white/80 hover:text-white"
                             aria-label="Close Cart"
                         >

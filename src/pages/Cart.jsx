@@ -91,7 +91,7 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
                         ))}
                     </div>
 
-                    {/* Total, Clear Cart, and Checkout */}
+                    {/* Total, Clear Cart, and Checkout  */}
                     <div className="mt-8 border-t border-[#8b5cf6]/30 pt-6 flex flex-col items-center gap-4">
                         <p
                             className={`text-xl font-extrabold text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)] transition-all duration-300 ${
