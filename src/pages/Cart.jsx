@@ -21,7 +21,7 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
     return (
         <div className="p-6">
             <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-8 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] text-center">
-                 Your Cart
+                    Glammy's Bag
             </h1>
 
             {cart.items.length === 0 ? (
@@ -31,7 +31,7 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
                         to="/"
                         className="inline-block bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
                     >
-                        Continue Shopping...............
+                        Continue Shopping
                     </Link>
                 </div>
             ) : (
