@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 
-export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCart }) {
+export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCart, closeCart }) {
     const prevTotalRef = useRef(cart.total);
 
     useEffect(() => {
@@ -21,13 +20,19 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
     return (
         <div className="p-6">
             <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-8 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] text-center">
-                    Your Bag
+                Your Bag
             </h1>
 
             {cart.items.length === 0 ? (
                 <div className="bg-gradient-to-br from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-3xl border border-[#8b5cf6]/30 rounded-2xl p-8 shadow-[0_0_20px_rgba(139,92,246,0.7)] text-center">
                     <p className="text-white/80 text-lg mb-4">Your cart is empty.</p>
-                    
+                    <button
+                        onClick={closeCart}
+                        className="inline-block bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
+                        aria-label="Continue Shopping"
+                    >
+                        Continue Shopping
+                    </button>
                 </div>
             ) : (
                 <div className="relative">

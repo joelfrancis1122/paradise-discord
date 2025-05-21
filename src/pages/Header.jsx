@@ -9,11 +9,16 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
     const [currency, setCurrency] = useState({ symbol: "$", code: "USD" });
     const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
 
+    // Function to close the cart modal
+    const closeCart = () => {
+        setIsCartOpen(false);
+    };
+
     return (
         <>
             <header className="container mx-auto flex items-center justify-between p-4 gap-3 bg-gradient-to-r from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-md border border-[#8b5cf6]/30 rounded-2xl shadow-[0_0_15px_rgba(139,92,246,0.6)] md:animate-glow-pulse">
                 <div className="flex items-center gap-2">
-                    <h2 className="text-xl sm:text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] ">
+                    <h2 className="text-xl sm:text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
                         WELCOME!!! To Mirage Store
                     </h2>
                     <img
@@ -34,13 +39,13 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                             {currency.symbol} {currency.code}
                         </button>
                         {showCurrencyDropdown && (
-                            <div className="absolute left-0 mt-2 w bg-[#181028] border border-[#c4b5fd]/80 rounded-lg shadow-lg z-50">-32
+                            <div className="absolute left-0 mt-2 w-full bg-[#181028] border border-[#c4b5fd]/80 rounded-lg shadow-lg z-50">
                                 {[
                                     { symbol: "$", code: "USD" },
                                     { symbol: "C$", code: "CAD" },
                                     { symbol: "€", code: "EUR" },
                                     { symbol: "£", code: "GBP" },
-                                    { symbol: "A$", code: "AUD" }
+                                    { symbol: "A$", code: "AUD" },
                                 ].map((cur) => (
                                     <button
                                         key={cur.code}
@@ -93,7 +98,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="relative bg-[#0a0d16] rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
                         <button
-                            onClick={() => setIsCartOpen(false)}
+                            onClick={closeCart} // Use closeCart here as well
                             className="absolute top-4 right-4 text-white/80 hover:text-white"
                             aria-label="Close Cart"
                         >
@@ -104,6 +109,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                             removeFromCart={removeFromCart}
                             updateCartQuantity={updateCartQuantity}
                             clearCart={clearCart}
+                            closeCart={closeCart} 
                         />
                     </div>
                 </div>
