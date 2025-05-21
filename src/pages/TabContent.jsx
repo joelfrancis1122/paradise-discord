@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import gift from "/gift.webp"
 import { toast } from "react-toastify"
 
@@ -40,8 +40,15 @@ export default function TabContent({ activeTab, items, addToCart }) {
       setAddedItemId(null)
     }, 2000)
   }
+const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
 
   const toggleFlip = (itemId) => {
+      
+      const flipSound = flipSoundRef.current;
+      flipSound.volume = 0.2; 
+  flipSound.currentTime = 0; 
+  flipSound.play();
+
     setFlippedCards((prev) => (prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId]))
   }
 
