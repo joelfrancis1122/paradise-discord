@@ -1,24 +1,22 @@
 import { Globe } from "lucide-react";
 import { useState } from "react";
+import { useCurrency } from "../context/CurrencyContext"; // ✅ Adjust this path
 import Cart from "./Cart";
 import cartIcon from "/cart.png";
 import starsSparkle from "/stars.gif";
 
 export default function Header({ cart, removeFromCart, updateCartQuantity, clearCart }) {
+    const { currency, setCurrency } = useCurrency(); // ✅ From context
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const [currency, setCurrency] = useState({ symbol: "$", code: "USD" });
     const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
 
-    
-    const closeCart = () => {
-        setIsCartOpen(false);
-    };
+    const closeCart = () => setIsCartOpen(false);
 
     return (
         <>
             <header className="container mx-auto flex items-center justify-between p-4 gap-3 bg-gradient-to-r from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-md border border-[#8b5cf6]/30 rounded-2xl shadow-[0_0_15px_rgba(139,92,246,0.6)] md:animate-glow-pulse">
                 <div className="flex items-center gap-2">
-                    <h2 className="text-xl sm:text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
+                    <h2 className="text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
                         WELCOME!!! To Mirage Store
                     </h2>
                     <img
@@ -33,8 +31,8 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                     <div className="relative">
                         <button
                             className="bg-gradient-to-r from-[#4c1d95]/40 to-[#2e1065]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
+                            onClick={() => setShowCurrencyDropdown((prev) => !prev)}
                             aria-label="Select Currency"
-                            onClick={() => setShowCurrencyDropdown((v) => !v)}
                         >
                             {currency.symbol} {currency.code}
                         </button>
@@ -98,7 +96,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="relative bg-[#0a0d16] rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
                         <button
-                            onClick={closeCart} 
+                            onClick={closeCart}
                             className="absolute top-4 right-4 text-white/80 hover:text-white"
                             aria-label="Close Cart"
                         >
@@ -109,7 +107,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                             removeFromCart={removeFromCart}
                             updateCartQuantity={updateCartQuantity}
                             clearCart={clearCart}
-                            closeCart={closeCart} 
+                            closeCart={closeCart}
                         />
                     </div>
                 </div>
