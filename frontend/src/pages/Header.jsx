@@ -1,31 +1,66 @@
 import { Globe } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useState } from "react";
-import { useCurrency } from "../context/CurrencyContext"; // ✅ Adjust this path
+import { useCurrency } from "../context/CurrencyContext"; // 
 import Cart from "./Cart";
 import cartIcon from "/cart.png";
 import starsSparkle from "/stars.gif";
 
 export default function Header({ cart, removeFromCart, updateCartQuantity, clearCart }) {
-    const { currency, setCurrency } = useCurrency(); // ✅ From context
+    const { currency, setCurrency } = useCurrency();
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
+    const [user, setUser] = useState(null);
 
     const closeCart = () => setIsCartOpen(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("jwt");
+        if (!token) return;
+        fetch("http://localhost:3001/api/me", {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.user) setUser(data.user);
+            });
+    }, []);
 
     return (
         <>
             <header className="container mx-auto flex items-center justify-between p-4 gap-3 bg-gradient-to-r from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-md border border-[#8b5cf6]/30 rounded-2xl shadow-[0_0_15px_rgba(139,92,246,0.6)] md:animate-glow-pulse">
                 <div className="flex items-center gap-2">
                     <h2 className="text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
-                        WELCOME!!! To Mirage Store
+                        {user ? `Welcome, ${user.username}` : "WELCOME To Mirage Store"}
                     </h2>
-                    <img
-                        src={starsSparkle}
-                        alt="Sparkling Stars"
-                        className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_5px_rgba(139,92,246,0.7)]"
-                    />
-                </div>
+                    
+                    {/* User Avatar */}
+    {user && user.avatar && (
+        <img
+            src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png`}
+            alt="avatar"
+            className="w-10 h-10 rounded-full border-2 border-[#a78bfa] shadow"
+        />
+    )}
+    <img
+        src={starsSparkle}
+        alt="Sparkling Stars"
+        className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_5px_rgba(139,92,246,0.7)]"
+    />
+</div>
 
+{user && (
+  <button
+    onClick={() => {
+      localStorage.removeItem("jwt");
+      setUser(null);
+      window.location.href = "/login"; // or navigate("/login") if using react-router
+    }}
+    className="ml-4 px-4 py-2 bg-[#a78bfa] text-white rounded-lg font-bold hover:bg-[#7c3aed] transition"
+  >
+    Logout
+  </button>
+)}
                 <div className="flex items-center gap-3">
                     {/* Currency Dropdown */}
                     <div className="relative">

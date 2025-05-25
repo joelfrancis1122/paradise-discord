@@ -1,0 +1,44 @@
+import { ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { CurrencyProvider } from "./context/CurrencyContext";
+
+function App() {
+  return (
+    <CurrencyProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          {/* Add more routes here */}
+        </Routes>
+      </Router>
+    </CurrencyProvider>
+  );
+}
+
+export default App;
