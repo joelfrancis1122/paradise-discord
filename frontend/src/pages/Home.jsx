@@ -13,7 +13,6 @@ import pic33 from "/33.webp";
 import gift from "/gift.webp";
 import "../index.css";
 import styles1 from "../assets/style";
-import LoginWithDiscord from "../components/LoginWithDiscord";
 
 export default function Home() {
     // User state for Discord login

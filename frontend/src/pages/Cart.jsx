@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginWithDiscord from "../components/LoginWithDiscord";
-
+// import LoginWithDiscord from "../components/LoginWithDiscord";
 export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCart, closeCart }) {
     const navigate = useNavigate();
     const prevTotalRef = useRef(cart.total);
@@ -47,7 +46,7 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
         {/* Show Discord login if not logged in */}
         {!user && (
             <div className="flex justify-center my-8">
-                <LoginWithDiscord />
+                {/* <LoginWithDiscord /> */}
             </div>
         )}
 

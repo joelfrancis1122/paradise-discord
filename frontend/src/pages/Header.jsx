@@ -1,7 +1,6 @@
 import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useState } from "react";
-import { useCurrency } from "../context/CurrencyContext"; // 
+import { useCurrency } from "../context/CurrencyContext"; 
 import Cart from "./Cart";
 import cartIcon from "/cart.png";
 import starsSparkle from "/stars.gif";
