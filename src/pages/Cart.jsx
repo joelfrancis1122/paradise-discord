@@ -1,35 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import LoginWithDiscord from "../components/LoginWithDiscord";
+import { useEffect, useRef } from "react";
+
 export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCart, closeCart }) {
-    const navigate = useNavigate();
     const prevTotalRef = useRef(cart.total);
-    const [user, setUser] = useState(null);
-
-
-    // Route protection: redirect to /login if no JWT
-    useEffect(() => {
-        const token = localStorage.getItem("jwt");
-        if (!token) {
-            navigate("/login");
-        }
-    }, [navigate]);
 
     useEffect(() => {
         prevTotalRef.current = cart.total;
     }, [cart.total]);
-
-    useEffect(() => {
-        const token = localStorage.getItem("jwt");
-        if (!token) return;
-        fetch("http://localhost:3001/api/me", {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.user) setUser(data.user);
-            });
-    }, []);
 
     const handleClearCart = () => {
         if (window.confirm("Are you sure you want to clear your cart?")) {
@@ -41,33 +17,27 @@ export default function Cart({ cart, removeFromCart, updateCartQuantity, clearCa
         alert("Proceeding to checkout! (This is a placeholder action.)");
     };
 
- return (
-    <div className="p-6">
-        {/* Show Discord login if not logged in */}
-        {!user && (
-            <div className="flex justify-center my-8">
-                {/* <LoginWithDiscord /> */}
-            </div>
-        )}
+    return (
+        <div className="p-6">
+            <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-8 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] text-center">
+                Your Bag
+            </h1>
 
-        <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-8 tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)] text-center">
-            {user ? `${user.username}'s Cart` : "Your Bag"}
-        </h1>
+            {cart.items.length === 0 ? (
+                <div className="bg-gradient-to-br from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-3xl border border-[#8b5cf6]/30 rounded-2xl p-8 shadow-[0_0_20px_rgba(139,92,246,0.7)] text-center">
+                    <p className="text-white/80 text-lg mb-4">Your cart is empty.</p>
+                    <button
+                        onClick={closeCart}
+                        className="inline-block bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
+                        aria-label="Continue Shopping"
+                    >
+                        Continue Shopping
+                    </button>
+                </div>
+            ) : (
+                <div className="relative">
+                    <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(147,51,234,0.15)_0%,transparent_70%)] opacity-40 animate-pulse" />
 
-        {cart.items.length === 0 ? (
-            <div className="bg-gradient-to-br from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-3xl border border-[#8b5cf6]/30 rounded-2xl p-8 shadow-[0_0_20px_rgba(139,92,246,0.7)] text-center">
-                <p className="text-white/80 text-lg mb-4">Your cart is empty.</p>
-                <button
-                    onClick={closeCart}
-                    className="inline-block bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-                    aria-label="Continue Shopping"
-                >
-                    Continue Shopping
-                </button>
-            </div>
-        ) : (
-            <div className="relative">
-                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(147,51,234,0.15)_0%,transparent_70%)] opacity-40 animate-pulse" />
                     {/* Cart Items */}
                     <div className="space-y-3 max-h-[50vh] overflow-y-auto pr-4">
                         {cart.items.map((item, index) => (
