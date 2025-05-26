@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import Login from "./pages/login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { CurrencyProvider } from "./context/CurrencyContext";
 
