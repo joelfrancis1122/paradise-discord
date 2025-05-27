@@ -179,7 +179,7 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-[#0a0d16] bg-[url('/background.webp')] bg-cover bg-center bg-no-repeat text-white font-sans relative overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0  overflow-hidden">
                 <div className="absolute w-full h-full bg-[url('/stars.webp')] bg-repeat opacity-40"></div>
                 <div className="absolute w-full h-full animate-twinkle"></div>
             </div>

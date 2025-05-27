@@ -89,7 +89,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
 
   return (
     <div className="md:col-span-4 bg-gradient-to-br from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-3xl border border-[#8b5cf6]/30 rounded-2xl p-6 shadow-[0_0_20px_rgba(139,92,246,0.7)] relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(147,51,234,0.15)_0%,transparent_70%)] opacity-40 animate-pulse" />
+      <div className="absolute inset-0  bg-[radial-gradient(circle_at_50%_50%,rgba(147,51,234,0.15)_0%,transparent_70%)] opacity-40 animate-pulse" />
       {activeTab === "roles" && (
         <div className="animate-fade">
           <h1 className="text-3xl font-extrabold text-[#a78bfa] mb-2 tracking-widest [text-shadow:0_2px_4px_rgba(0,0,0,0.7)]">
@@ -115,7 +115,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
                   >
                     {/* Front Side */}
                     <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-2xl bg-gradient-to-br from-[#1a0b2e]/60 to-[#4c1d95]/60 [backface-visibility:hidden]">
-                      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
+                      <div className="absolute inset-0  bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
                       <div className="p-3 rounded-full mb-4 shadow-[0_0_10px_rgba(139,92,246,0.7)]">
                         {item.image && (
                           <img
@@ -146,7 +146,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
 
                     {/* Back Side */}
                     <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-2xl bg-gradient-to-br from-[#4c1d95]/70 to-[#7e22ce]/70 text-white [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto">
-                      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
+                      <div className="absolute inset-0  bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
                       <h3 className="font-bold text-2xl text-white mb-3 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
                         {item.name}
                       </h3>
@@ -210,7 +210,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
                   >
                     {/* Front Side */}
                     <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-2xl bg-gradient-to-br from-[#1a0b2e]/60 to-[#4c1d95]/60 [backface-visibility:hidden]">
-                      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
+                      <div className="absolute inset-0  bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
                       <div className="p-3 rounded-full mb-4 shadow-[0_0_10px_rgba(59,130,246,0.7)]">
                         {item.image && (
                           <img
@@ -244,7 +244,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
 
                     {/* Back Side */}
                     <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-2xl bg-gradient-to-br from-[#4c1d95]/70 to-[#7e22ce]/70 text-white [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto">
-                      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
+                      <div className="absolute inset-0  bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
                       <h3 className="font-bold text-2xl text-white mb-3 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
                         {item.name}
                       </h3>
@@ -308,7 +308,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
                   >
                     {/* Front Side */}
                     <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-2xl bg-gradient-to-br from-[#1a0b2e]/60 to-[#4c1d95]/60 [backface-visibility:hidden]">
-                      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
+                      <div className="absolute inset-0  bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
                       <div className="p-3 rounded-full mb-4 shadow-[0_0_10px_rgba(236,72,153,0.7)]">
                         <img
                           src={gift || "/placeholder.svg"}
@@ -337,7 +337,7 @@ const flipSoundRef = useRef(new Audio('/sounds/wind.wav'));
 
                     {/* Back Side */}
                     <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-2xl bg-gradient-to-br from-[#4c1d95]/70 to-[#7e22ce]/70 text-white [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto">
-                      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
+                      <div className="absolute inset-0  bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
                       <h3 className="font-bold text-2xl text-white mb-3 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
                         {item.name}
                       </h3>

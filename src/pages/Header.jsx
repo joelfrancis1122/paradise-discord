@@ -1,6 +1,6 @@
-import { Globe, LogIn } from "lucide-react"; // Added LogIn icon
+import { Globe, LogIn, LogOut } from "lucide-react"; // Changed LogIn to LogOut
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"; // For navigation
+import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
 import Cart from "./Cart";
 import cartIcon from "/cart.png";
@@ -13,8 +13,9 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
   const [language, setLanguage] = useState({ name: "English", code: "en" });
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [user, setUser] = useState(null);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
   const navigate = useNavigate();
-  const flipSoundRef = useRef(new Audio("/sounds/wind.wav")); // Same sound as TabContent
+  const flipSoundRef = useRef(new Audio("/sounds/wind.wav"));
 
   const closeCart = () => {
     flipSoundRef.current.currentTime = 0;
@@ -23,15 +24,31 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (!token) return;
-    fetch("http://localhost:3001/api/me", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user) setUser(data.user);
-      });
+    // Try to get user from localStorage
+    const userStr = localStorage.getItem("mirage_user");
+    if (userStr) {
+      try {
+        setUser(JSON.parse(userStr));
+      } catch {
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  // Optionally, listen for storage changes (e.g., login in another tab)
+  useEffect(() => {
+    const handleStorage = () => {
+      const userStr = localStorage.getItem("mirage_user");
+      if (userStr) {
+        setUser(JSON.parse(userStr));
+      } else {
+        setUser(null);
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   return (
@@ -43,7 +60,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
           </h2>
           {user && user.avatar && (
             <img
-              src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png`}
+              src={user.avatar}
               alt="avatar"
               className="w-10 h-10 rounded-full border-2 border-[#a78bfa] shadow"
             />
@@ -71,7 +88,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
               {currency.symbol} {currency.code}
             </button>
             {showCurrencyDropdown && (
-              <div className="absolute left-0 mt-2 w-full bg-[#181028] border border-[#c4b5fd]/80 rounded-lg shadow-lg z-50">
+              <div className="absolute left-0 mt-2 w-full bg-[#181028] border border-[#c4b5fd]/80 rounded-lg shadow-lg z-50 pointer-events-auto">
                 {[
                   { symbol: "$", code: "USD" },
                   { symbol: "C$", code: "CAD" },
@@ -137,29 +154,40 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
             )}
           </div>
 
-          {/* Discord Login Button (for unauthenticated users) */}
-          {!user && (
+          {/* Username or Login Button */}
+          {user ? (
+            <div className="relative">
+              <button
+                onClick={() => setShowUserDropdown((prev) => !prev)}
+                className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
+                aria-label="User Menu"
+              >
+                <span className="font-semibold">{user.username}</span>
+              </button>
+              {showUserDropdown && (
+                <div className="absolute right-0 mt-2 w-32 bg-[#181028] border border-[#c4b5fd]/80 rounded-lg shadow-lg z-50">
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("mirage_token");
+                      localStorage.removeItem("mirage_user");
+                      setUser(null);
+                      setShowUserDropdown(false);
+                      navigate("/login");
+                    }}
+                    className="block w-full text-left px-4 py-2 text-white hover:bg-[#7c3aed]/60 rounded-lg"
+                  >
+                    <LogOut className="inline mr-2 h-4 w-4" /> Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
             <button
               onClick={() => navigate("/login")}
               className="bg-gradient-to-r from-[#4c1d95]/40 to-[#5865F2]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#5865F2]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
               aria-label="Login with Discord"
             >
               <LogIn className="mr-2 h-4 w-4" /> Login
-            </button>
-          )}
-
-          {/* Logout Button (for authenticated users) */}
-          {user && (
-            <button
-              onClick={() => {
-                localStorage.removeItem("jwt");
-                setUser(null);
-                navigate("/login");
-              }}
-              className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#7c3aed]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-              aria-label="Logout"
-            >
-              Logout
             </button>
           )}
 
@@ -188,7 +216,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
         </div>
       </header>
 
-      {/* Cart Modal */}
       {isCartOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="relative bg-[#0a0d16] rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">

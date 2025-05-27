@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { CurrencyProvider } from "./context/CurrencyContext";
+import AuthSuccess from "./pages/AuthSuccess";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/auth/callback" element={<AuthSuccess />} />
         <Route
           path="/cart"
           element={
