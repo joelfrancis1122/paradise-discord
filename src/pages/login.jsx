@@ -2,7 +2,7 @@ import { LogIn } from "lucide-react";
 
 export default function Login() {
   const handleDiscordLogin = () => {
-    window.location.href = "http://localhost:3001/api/auth/discord";
+    window.location.href = "http://localhost:3000/api/auth/discord";
   };
 
   return (
