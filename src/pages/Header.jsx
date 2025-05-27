@@ -172,7 +172,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                       localStorage.removeItem("mirage_user");
                       setUser(null);
                       setShowUserDropdown(false);
-                      navigate("/login");
+                      navigate("/");
                     }}
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#7c3aed]/60 rounded-lg"
                   >

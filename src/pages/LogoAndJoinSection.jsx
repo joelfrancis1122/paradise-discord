@@ -3,17 +3,17 @@ import pic from "/image.webp";
 
 export default function LogoAndJoinSection() {
     return (
-        <div className="container mx-auto flex flex-col items-center justify-center py-30 relative">
-            <div className="absolute inset-0 opacity-100">
+        <div className="container mx-auto flex flex-col items-center justify-center py-30 relative pointer-events-none">
+            <div className="absolute inset-0 opacity-100 pointer-events-none">
                 {/* Background Image with Blend Mode */}
                 <div className="absolute inset-0 mix-blend-soft-light">
-                    
+
                     <img
                         src={pic || ""}
                         alt="Mirage Logo"
                         className="object-cover w-full h-[500px] transition-transform transform duration-1000 hover:scale-105 will-change-transform"
                     />
-                
+
                 </div>
 
                 {/* Flexbox to align icon center vertically, with 100px left gap */}
