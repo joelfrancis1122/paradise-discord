@@ -15,11 +15,8 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
   const [user, setUser] = useState(null);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const navigate = useNavigate();
-  const flipSoundRef = useRef(new Audio("/sounds/wind.wav"));
 
   const closeCart = () => {
-    flipSoundRef.current.currentTime = 0;
-    flipSoundRef.current.play();
     setIsCartOpen(false);
   };
 
@@ -79,9 +76,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
               className="bg-gradient-to-r from-[#4c1d95]/40 to-[#2e1065]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
               onClick={() => {
                 console.log("Toggling currency dropdown, current state:", showCurrencyDropdown);
-                flipSoundRef.current.currentTime = 0;
-                flipSoundRef.current.play();
-                setShowCurrencyDropdown((prev) => !prev);
+                  setShowCurrencyDropdown((prev) => !prev);
               }}
               aria-label="Select Currency"
             >
@@ -101,8 +96,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#6d28d9]/60 rounded-lg"
                     onClick={() => {
                       console.log("Selected currency:", cur);
-                      flipSoundRef.current.currentTime = 0;
-                      flipSoundRef.current.play();
                       setCurrency(cur);
                       setShowCurrencyDropdown(false);
                     }}
@@ -120,8 +113,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
               className="bg-gradient-to-r from-[#4c1d95]/40 to-[#7e22ce]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
               onClick={() => {
                 console.log("Toggling language dropdown, current state:", showLanguageDropdown);
-                flipSoundRef.current.currentTime = 0;
-                flipSoundRef.current.play();
                 setShowLanguageDropdown((prev) => !prev);
               }}
               aria-label="Select Language"
@@ -141,8 +132,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#6d28d9]/60 rounded-lg"
                     onClick={() => {
                       console.log("Selected language:", lang);
-                      flipSoundRef.current.currentTime = 0;
-                      flipSoundRef.current.play();
                       setLanguage(lang);
                       setShowLanguageDropdown(false);
                     }}
@@ -194,8 +183,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
           {/* Cart Button */}
           <button
             onClick={() => {
-              flipSoundRef.current.currentTime = 0;
-              flipSoundRef.current.play();
               setIsCartOpen(true);
             }}
             className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 p-2 rounded-lg flex items-center justify-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] relative"
