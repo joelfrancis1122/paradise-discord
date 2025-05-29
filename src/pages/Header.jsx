@@ -1,4 +1,4 @@
-import { Globe, LogIn, LogOut } from "lucide-react"; // Changed LogIn to LogOut
+import { Globe, LogIn, LogOut } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
@@ -16,12 +16,29 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const navigate = useNavigate();
 
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
+  // Refs for dropdowns
+  const currencyRef = useRef(null);
+  const languageRef = useRef(null);
+  const userRef = useRef(null);
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (currencyRef.current && !currencyRef.current.contains(event.target)) {
+        setShowCurrencyDropdown(false);
+      }
+      if (languageRef.current && !languageRef.current.contains(event.target)) {
+        setShowLanguageDropdown(false);
+      }
+      if (userRef.current && !userRef.current.contains(event.target)) {
+        setShowUserDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
-    // Try to get user from localStorage
     const userStr = localStorage.getItem("mirage_user");
     if (userStr) {
       try {
@@ -34,7 +51,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
     }
   }, []);
 
-  // Optionally, listen for storage changes (e.g., login in another tab)
   useEffect(() => {
     const handleStorage = () => {
       const userStr = localStorage.getItem("mirage_user");
@@ -47,6 +63,8 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
+
+  const closeCart = () => setIsCartOpen(false);
 
   return (
     <>
@@ -71,13 +89,10 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
 
         <div className="flex items-center gap-3">
           {/* Currency Dropdown */}
-          <div className="relative">
+          <div className="relative" ref={currencyRef}>
             <button
               className="bg-gradient-to-r from-[#4c1d95]/40 to-[#2e1065]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-              onClick={() => {
-                console.log("Toggling currency dropdown, current state:", showCurrencyDropdown);
-                  setShowCurrencyDropdown((prev) => !prev);
-              }}
+              onClick={() => setShowCurrencyDropdown((prev) => !prev)}
               aria-label="Select Currency"
             >
               {currency.symbol} {currency.code}
@@ -95,7 +110,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                     key={cur.code}
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#6d28d9]/60 rounded-lg"
                     onClick={() => {
-                      console.log("Selected currency:", cur);
                       setCurrency(cur);
                       setShowCurrencyDropdown(false);
                     }}
@@ -108,13 +122,10 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
           </div>
 
           {/* Language Dropdown */}
-          <div className="relative">
+          <div className="relative" ref={languageRef}>
             <button
               className="bg-gradient-to-r from-[#4c1d95]/40 to-[#7e22ce]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-              onClick={() => {
-                console.log("Toggling language dropdown, current state:", showLanguageDropdown);
-                setShowLanguageDropdown((prev) => !prev);
-              }}
+              onClick={() => setShowLanguageDropdown((prev) => !prev)}
               aria-label="Select Language"
             >
               <Globe className="mr-2 h-4 w-4" /> {language.name}
@@ -131,7 +142,6 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                     key={lang.code}
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#6d28d9]/60 rounded-lg"
                     onClick={() => {
-                      console.log("Selected language:", lang);
                       setLanguage(lang);
                       setShowLanguageDropdown(false);
                     }}
@@ -145,7 +155,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
 
           {/* Username or Login Button */}
           {user ? (
-            <div className="relative">
+            <div className="relative" ref={userRef}>
               <button
                 onClick={() => setShowUserDropdown((prev) => !prev)}
                 className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
@@ -182,9 +192,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
 
           {/* Cart Button */}
           <button
-            onClick={() => {
-              setIsCartOpen(true);
-            }}
+            onClick={() => setIsCartOpen(true)}
             className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 p-2 rounded-lg flex items-center justify-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] relative"
             aria-label={`View Cart (${cart.items.length} item${cart.items.length !== 1 ? "s" : ""})`}
           >
