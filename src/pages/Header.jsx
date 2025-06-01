@@ -2,18 +2,23 @@ import { Globe, LogIn, LogOut } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
+import { useTranslation } from "../context/TranslationContext";
 import Cart from "./Cart";
 import cartIcon from "/cart.png";
 import starsSparkle from "/stars.gif";
 
 export default function Header({ cart, removeFromCart, updateCartQuantity, clearCart }) {
   const { currency, setCurrency } = useCurrency();
+  const { language, setLanguage, translate } = useTranslation();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
-  const [language, setLanguage] = useState({ name: "English", code: "en" });
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [user, setUser] = useState(null);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [welcomeText, setWelcomeText] = useState("WELCOME To Mirage Store");
+  const [cartText, setCartText] = useState("Cart");
+  const [loginText, setLoginText] = useState("Login");
+  const [logoutText, setLogoutText] = useState("Logout");
   const navigate = useNavigate();
 
   // Refs for dropdowns
@@ -38,7 +43,9 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Load user
   useEffect(() => {
+    console.log("Cart prop:", cart); // Debug cart
     const userStr = localStorage.getItem("mirage_user");
     if (userStr) {
       try {
@@ -61,8 +68,31 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
       }
     };
     window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    return () => window.addEventListener("storage", handleStorage);
   }, []);
+
+  // Translate UI text
+  useEffect(() => {
+    console.log("Language changed:", language); // Debug
+    async function updateTranslations() {
+      console.log("Updating translations for language:", language.code);
+      if (!user) {
+        const translatedWelcome = await translate("welcome", "WELCOME To Mirage Store");
+        console.log("Welcome text:", translatedWelcome);
+        setWelcomeText(translatedWelcome);
+      }
+      const translatedCart = await translate("cart", "Cart");
+      console.log("Cart text:", translatedCart);
+      setCartText(translatedCart);
+      const translatedLogin = await translate("login", "Login");
+      console.log("Login text:", translatedLogin);
+      setLoginText(translatedLogin);
+      const translatedLogout = await translate("logout", "Logout");
+      console.log("Logout text:", translatedLogout);
+      setLogoutText(translatedLogout);
+    }
+    updateTranslations();
+  }, [language, user, translate]);
 
   const closeCart = () => setIsCartOpen(false);
 
@@ -71,7 +101,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
       <header className="container mx-auto flex items-center justify-between p-4 gap-3 bg-gradient-to-r from-[#1a0b2e]/80 to-[#0f172a]/80 backdrop-blur-md border border-[#8b5cf6]/30 rounded-2xl shadow-[0_0_15px_rgba(139,92,246,0.6)] md:animate-glow-pulse">
         <div className="flex items-center gap-2">
           <h2 className="text-xl font-extrabold text-[#a78bfa] tracking-widest [text-shadow:_0_2px_4px_rgba(0,0,0,0.7)]">
-            {user ? `Welcome, ${user.username}` : "WELCOME To Mirage Store"}
+            {user ? `Welcome, ${user.username}` : welcomeText}
           </h2>
           {user && user.avatar && (
             <img
@@ -124,7 +154,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
           {/* Language Dropdown */}
           <div className="relative" ref={languageRef}>
             <button
-              className="bg-gradient-to-r from-[#4c1d95]/40 to-[#7e22ce]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
+              className="bg-gradient-to-r from-[#4c1d95]/90 to-[#7e22ce]/90 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#6d28d9]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
               onClick={() => setShowLanguageDropdown((prev) => !prev)}
               aria-label="Select Language"
             >
@@ -137,11 +167,14 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                   { name: "Spanish", code: "es" },
                   { name: "French", code: "fr" },
                   { name: "German", code: "de" },
+                  { name: "Japanese", code: "ja" },
+                  { name: "Portuguese", code: "pt" },
                 ].map((lang) => (
                   <button
                     key={lang.code}
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#6d28d9]/60 rounded-lg"
                     onClick={() => {
+                      console.log("Setting language:", lang); // Debug
                       setLanguage(lang);
                       setShowLanguageDropdown(false);
                     }}
@@ -175,7 +208,7 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
                     }}
                     className="block w-full text-left px-4 py-2 text-white hover:bg-[#7c3aed]/60 rounded-lg"
                   >
-                    <LogOut className="inline mr-2 h-4 w-4" /> Logout
+                    <LogOut className="inline mr-2 h-4 w-4" /> {logoutText}
                   </button>
                 </div>
               )}
@@ -184,29 +217,31 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
             <button
               onClick={() => navigate("/login")}
               className="bg-gradient-to-r from-[#4c1d95]/40 to-[#5865F2]/40 backdrop-blur-md border border-[#c4b5fd]/30 text-white hover:bg-[#5865F2]/30 px-4 py-2 rounded-lg flex items-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:shadow-[0_0_15px_rgba(139,92,246,0.8)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]"
-              aria-label="Login with Discord"
             >
-              <LogIn className="mr-2 h-4 w-4" /> Login
+              <LogIn className="mr-2 h-4 w-4" /> {loginText}
             </button>
           )}
 
           {/* Cart Button */}
           <button
-            onClick={() => setIsCartOpen(true)}
+            onClick={() => {
+              console.log("Opening cart, items:", cart?.items); // Debug
+              setIsCartOpen(true);
+            }}
             className="bg-gradient-to-r from-[#7e22ce]/40 to-[#4c1d95]/40 backdrop-blur-md border border-[#c4b5fd]/30 p-2 rounded-lg flex items-center justify-center transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] relative"
-            aria-label={`View Cart (${cart.items.length} item${cart.items.length !== 1 ? "s" : ""})`}
+            aria-label={`View Cart (${cart?.items?.length || 0} item${cart?.items?.length !== 1 ? "s" : ""})`}
           >
             <img
               src={cartIcon}
               alt="Cart"
               className="w-5 h-5 sm:w-6 sm:h-6 text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]"
             />
-            {cart.items.length > 0 && (
+            {cart?.items?.length > 0 && (
               <span className="absolute -top-1 -right-1 bg-[#a78bfa] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-[0_0_5px_rgba(139,92,246,0.7)]">
                 {cart.items.length}
               </span>
             )}
-            <p className="ml-2">Cart</p>
+            <p className="ml-2">{cartText}</p>
           </button>
         </div>
       </header>
@@ -223,9 +258,18 @@ export default function Header({ cart, removeFromCart, updateCartQuantity, clear
             </button>
             <Cart
               cart={cart}
-              removeFromCart={removeFromCart}
-              updateCartQuantity={updateCartQuantity}
-              clearCart={clearCart}
+              removeFromCart={(id) => {
+                console.log("Removing item:", id); // Debug
+                removeFromCart(id);
+              }}
+              updateCartQuantity={(id, quantity) => {
+                console.log("Updating quantity:", id, quantity); // Debug
+                updateCartQuantity(id, quantity);
+              }}
+              clearCart={() => {
+                console.log("Clearing cart"); // Debug
+                clearCart();
+              }}
               closeCart={closeCart}
             />
           </div>

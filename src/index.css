@@ -88,3 +88,57 @@ body {
 .Toastify__close-button:hover {
     color: white !important;
 }
+
+/* src/index.css or a stylesheet */
+.translate-widget {
+  display: inline-block;
+}
+
+/* Style the dropdown */
+.goog-te-combo {
+  background: linear-gradient(to right, rgba(76, 29, 149, 0.4), rgba(126, 34, 206, 0.4));
+  border: 1px solid rgba(196, 181, 253, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.goog-te-combo:hover {
+  background: linear-gradient(to right, rgba(109, 40, 217, 0.3), rgba(124, 58, 237, 0.3));
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.8);
+  transform: scale(1.05);
+}
+
+/* Style the dropdown menu */
+.goog-te-menu-value {
+  color: white;
+}
+
+.goog-te-menu-frame {
+  background: #181028 !important;
+  border: 1px solid rgba(196, 181, 253, 0.8) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6) !important;
+}
+
+.goog-te-menu2-item div, .goog-te-menu2-item-selected div {
+  color: white !important;
+  padding: 8px 16px !important;
+}
+
+.goog-te-menu2-item:hover div {
+  background: rgba(109, 40, 217, 0.6) !important;
+}
+
+/* Hide Google branding (check terms) */
+.goog-logo-link, .goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important; /* Prevent Google Translate iframe from shifting content */
+}
