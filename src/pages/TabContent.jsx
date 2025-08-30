@@ -218,75 +218,79 @@ export default function TabContent({ activeTab, items, addToCart }) {
                   className={`relative w-full min-h-[450px] transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards.includes(item.id) ? "[transform:rotateY(180deg)]" : ""}`}
                 >
                   {/* Front Side */}
-                  <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-2xl bg-gradient-to-br from-[#1a0b2e]/60 to-[#4c1d95]/60 [backface-visibility:hidden]">
-                    <div className="absolute inset-0  bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
-                    <div className="p-3 rounded-full mb-4 shadow-[0_0_10px_rgba(59,130,246,0.7)]">
-                      {item.image && (
-                        <img
-                          src={item.image || "/placeholder.svg"}
-                          alt="Booster Icon"
-                          className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
-                        />
-                      )}
-                    </div>
-                    <h3 className="font-bold text-lg text-white mb-2 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-                      {item.name}
-                    </h3>
-                    <p className="text-white/80 text-center mb-4">
-                      Boost the server for{" "}
-                      {item.name.includes("1") ? "1 month" : item.name.includes("3") ? "3 months" : "6 months"}
-                    </p>
-                    <p className="font-extrabold text-xl text-white mb-3 [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-                      ${item.price.toFixed(2)}
-                    </p>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleAddToCart(item)
-                      }}
-                      className="w-full bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] relative overflow-hidden"
-                      aria-label={`Add ${item.name} to cart`}
-                    >
-                      <span className="relative z-10">Add to Cart</span>
-                    </button>
-                  </div>
+             <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-3xl bg-[rgba(255,255,255,0.03)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.08)] [backface-visibility:hidden] shadow-[0_4px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_40px_rgba(100,200,255,0.4)] transition-all duration-500 group">
+  <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.1),rgba(200,150,255,0.1))] opacity-20 group-hover:opacity-40 animate-shimmer" />
+  <div className="p-4 rounded-full mb-4 border border-[rgba(255,255,255,0.1)] shadow-[0_0_20px_rgba(100,200,255,0.5)] transition-all duration-300 group-hover:[filter:drop-shadow(0_0_15px_rgba(255,255,255,0.5))]">
+    {item.image && (
+      <img
+        src={item.image || "/placeholder.svg"}
+        alt="Booster Icon"
+        className="h-40 w-40 object-contain transition-transform duration-500 group-hover:scale-110 group-hover:[filter:drop-shadow(0_0_10px_rgba(255,255,255,0.5))]"
+      />
+    )}
+  </div>
+  <h3 className="font-bold text-lg text-[rgba(255,255,255,0.9)] mb-2 tracking-wider font-['Poppins'] [text-shadow:0_0_5px_rgba(100,200,255,0.3)]">
+    {item.name}
+  </h3>
+  <p className="text-[rgba(255,255,255,0.6)] text-center mb-4 font-['Poppins']">
+    Boost the server for{" "}
+    {item.name.includes("1") ? "1 month" : item.name.includes("3") ? "3 months" : "6 months"}
+  </p>
+  <p className="font-extrabold text-xl text-[rgba(255,255,255,0.9)] mb-3 [text-shadow:0_0_5px_rgba(100,200,255,0.3)]">
+    ${item.price.toFixed(2)}
+  </p>
+  <button
+    onClick={(e) => {
+      e.stopPropagation()
+      handleAddToCart(item)
+    }}
+    className="w-full bg-[rgba(100,200,255,0.15)] backdrop-blur-[10px] text-white font-semibold px-4 py-2 rounded-xl transition-all duration-500 border border-[rgba(255,255,255,0.1)] hover:bg-[rgba(100,200,255,0.25)] hover:shadow-[0_0_20px_rgba(100,200,255,0.6)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgba(100,200,255,0.4)] relative overflow-hidden group"
+    aria-label={`Add ${item.name} to cart`}
+  >
+    <span className="relative z-10">Add to Cart</span>
+    <span className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.2),rgba(200,150,255,0.2))] opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-0 group-hover:scale-150 rounded-full"></span>
+  </button>
+</div>
 
                   {/* Back Side */}
-                  <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-2xl bg-gradient-to-br from-[#4c1d95]/70 to-[#7e22ce]/70 text-white [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto">
-                    <div className="absolute inset-0  bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
-                    <h3 className="font-bold text-2xl text-white mb-3 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-                      {item.name}
-                    </h3>
-                    <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mb-4"></div>
-                    <h4 className="text-lg font-semibold text-purple-300 mb-3">Benefits</h4>
-                    {parseDetails(item.details, "boosters").length > 0 ? (
-                      <ul className="text-white/90 text-base mb-6 space-y-4 w-full">
-                        {parseDetails(item.details, "boosters").map((detail, index) => (
-                          <li
-                            key={index}
-                            className="flex items-center gap-3 animate-fade-up"
-                            style={{ animationDelay: `${index * 100}ms` }}
-                          >
-                            <span className="text-2xl text-yellow-300 flex-shrink-0">{detail.icon}</span>
-                            <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: detail.text }} />
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-white/80 mb-6">No details available.</p>
-                    )}
-                    <div className="mt-auto w-full">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          handleAddToCart(item)
-                        }}
-                        className="w-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105"
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
+               <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-3xl bg-[rgba(255,255,255,0.03)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.9)] [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto shadow-[0_4px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_40px_rgba(100,200,255,0.4)] transition-all duration-500 group">
+  <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.1),rgba(200,150,255,0.1))] opacity-20 group-hover:opacity-40 animate-shimmer" />
+  <h3 className="font-bold text-2xl mb-3 tracking-wider font-['Poppins'] [text-shadow:0_0_5px_rgba(100,200,255,0.3)]">
+    {item.name}
+  </h3>
+  <div className="w-24 h-1 bg-[linear-gradient(90deg,rgba(100,200,255,0.5),rgba(200,150,255,0.5))] rounded-full mb-4"></div>
+  <h4 className="text-lg font-semibold text-[rgba(200,200,255,0.7)] mb-3 font-['Poppins']">Benefits</h4>
+  {parseDetails(item.details, "boosters").length > 0 ? (
+    <ul className="text-[rgba(255,255,255,0.9)] text-base mb-6 space-y-4 w-full font-['Poppins']">
+      {parseDetails(item.details, "boosters").map((detail, index) => (
+        <li
+          key={index}
+          className="flex items-center gap-3 animate-crystal-fade-up"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <span className="text-2xl text-[rgba(255,255,255,0.7)] flex-shrink-0 transition-transform duration-300 hover:scale-125 hover:[filter:drop-shadow(0_0_5px_rgba(255,255,255,0.5))]">
+            {detail.icon}
+          </span>
+          <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: detail.text }} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p className="text-[rgba(255,255,255,0.6)] mb-6 font-['Poppins']">No details available.</p>
+  )}
+  <div className="mt-auto w-full">
+    <button
+      onClick={(e) => {
+        e.stopPropagation()
+        handleAddToCart(item)
+      }}
+      className="w-full bg-[rgba(100,200,255,0.15)] backdrop-blur-[10px] text-white font-semibold px-4 py-2 rounded-xl transition-all duration-500 border border-[rgba(255,255,255,0.1)] hover:bg-[rgba(100,200,255,0.25)] hover:shadow-[0_0_20px_rgba(100,200,255,0.6)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgba(100,200,255,0.4)] relative overflow-hidden group"
+    >
+      <span className="relative z-10">Add to Cart</span>
+      <span className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.2),rgba(200,150,255,0.2))] opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-0 group-hover:scale-150 rounded-full"></span>
+    </button>
+  </div>
+</div>
                 </div>
               </div>
             ))}
@@ -318,70 +322,76 @@ export default function TabContent({ activeTab, items, addToCart }) {
                   className={`relative w-full min-h-[450px] transition-transform duration-500 [transform-style:preserve-3d] ${flippedCards.includes(item.id) ? "[transform:rotateY(180deg)]" : ""}`}
                 >
                   {/* Front Side */}
-                  <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-2xl bg-gradient-to-br from-[#1a0b2e]/60 to-[#4c1d95]/60 [backface-visibility:hidden]">
-                    <div className="absolute inset-0  bg-[radial-gradient(circle_at_10%_10%,rgba(255,255,255,0.2)_0%,transparent_50%)] opacity-20 hover:opacity-40 transition-opacity duration-300" />
-                    <div className="p-3 rounded-full mb-4 shadow-[0_0_10px_rgba(236,72,153,0.7)]">
-                      <img
-                        src={gift || "/placeholder.svg"}
-                        alt="Gift Icon"
-                        className="h-40 w-40 object-contain drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]"
-                      />
-                    </div>
-                    <h3 className="font-bold text-lg text-white mb-2 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-                      {item.name}
-                    </h3>
-                    <p className="text-white/80 text-center mb-4">Gift card value varies</p>
-                    <p className="font-extrabold text-xl text-white mb-3 [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-                      ${item.price.toFixed(2)}
-                    </p>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleAddToCart(item)
-                      }}
-                      className="w-full bg-gradient-to-r from-[#4c1d95] to-[#7e22ce] text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(139,92,246,0.7)] hover:shadow-[0_0_15px_rgba(139,92,246,1)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] relative overflow-hidden"
-                      aria-label={`Add ${item.name} to cart`}
-                    >
-                      <span className="relative z-10">Add to Cart</span>
-                    </button>
-                  </div>
+                  <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-between p-4 rounded-3xl bg-[rgba(255,255,255,0.03)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.08)] [backface-visibility:hidden] shadow-[0_4px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_40px_rgba(100,200,255,0.4)] transition-all duration-500 group">
+  <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.1),rgba(200,150,255,0.1))] opacity-20 group-hover:opacity-40 animate-shimmer" />
+  <div className="p-4 rounded-full mb-4 border border-[rgba(255,255,255,0.1)] shadow-[0_0_20px_rgba(100,200,255,0.5)] transition-all duration-300 group-hover:[filter:drop-shadow(0_0_15px_rgba(255,255,255,0.5))]">
+    <img
+      src={gift || "/placeholder.svg"}
+      alt="Gift Icon"
+      className="h-40 w-40 object-contain transition-transform duration-500 group-hover:scale-110 group-hover:[filter:drop-shadow(0_0_10px_rgba(255,255,255,0.5))]"
+    />
+  </div>
+  <h3 className="font-bold text-lg text-[rgba(255,255,255,0.9)] mb-2 tracking-wider font-['Poppins'] [text-shadow:0_0_5px_rgba(100,200,255,0.3)]">
+    {item.name}
+  </h3>
+  <p className="text-[rgba(255,255,255,0.6)] text-center mb-4 font-['Poppins']">
+    Gift card value varies
+  </p>
+  <p className="font-extrabold text-xl text-[rgba(255,255,255,0.9)] mb-3 [text-shadow:0_0_5px_rgba(100,200,255,0.3)]">
+    ${item.price.toFixed(2)}
+  </p>
+  <button
+    onClick={(e) => {
+      e.stopPropagation()
+      handleAddToCart(item)
+    }}
+    className="w-full bg-[rgba(100,200,255,0.15)] backdrop-blur-[10px] text-white font-semibold px-4 py-2 rounded-xl transition-all duration-500 border border-[rgba(255,255,255,0.1)] hover:bg-[rgba(100,200,255,0.25)] hover:shadow-[0_0_20px_rgba(100,200,255,0.6)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgba(100,200,255,0.4)] relative overflow-hidden group"
+    aria-label={`Add ${item.name} to cart`}
+  >
+    <span className="relative z-10">Add to Cart</span>
+    <span className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.2),rgba(200,150,255,0.2))] opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-0 group-hover:scale-150 rounded-full"></span>
+  </button>
+</div>
 
                   {/* Back Side */}
-                  <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-2xl bg-gradient-to-br from-[#4c1d95]/70 to-[#7e22ce]/70 text-white [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto">
-                    <div className="absolute inset-0  bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.2)_0%,transparent_60%)] opacity-30" />
-                    <h3 className="font-bold text-2xl text-white mb-3 tracking-widest [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
-                      {item.name}
-                    </h3>
-                    <div className="w-20 h-1 bg-gradient-to-r from-pink-400 to-purple-600 rounded-full mb-4"></div>
-                    <h4 className="text-lg font-semibold text-pink-300 mb-3">Details</h4>
-                    {parseDetails(item.details, "giftcards").length > 0 ? (
-                      <ul className="text-white/90 text-base mb-6 space-y-4 w-full">
-                        {parseDetails(item.details, "giftcards").map((detail, index) => (
-                          <li
-                            key={index}
-                            className="flex items-center gap-3 animate-fade-up"
-                            style={{ animationDelay: `${index * 100}ms` }}
-                          >
-                            <span className="text-2xl flex-shrink-0">{detail.icon}</span>
-                            <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: detail.text }} />
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-white/80 mb-6">No details available.</p>
-                    )}
-                    <div className="mt-auto w-full">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          handleAddToCart(item)
-                        }}
-                        className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200 shadow-[0_0_10px_rgba(236,72,153,0.7)] hover:shadow-[0_0_15px_rgba(236,72,153,1)] hover:scale-105"
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
+                  <div className="absolute w-full min-h-[450px] flex flex-col items-center justify-start p-6 rounded-3xl bg-[rgba(255,255,255,0.03)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.9)] [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto shadow-[0_4px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_40px_rgba(100,200,255,0.4)] transition-all duration-500 group">
+  <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.1),rgba(200,150,255,0.1))] opacity-20 group-hover:opacity-40 animate-shimmer" />
+  <h3 className="font-bold text-2xl mb-3 tracking-wider font-['Poppins'] [text-shadow:0_0_5px_rgba(100,200,255,0.3)]">
+    {item.name}
+  </h3>
+  <div className="w-24 h-1 bg-[linear-gradient(90deg,rgba(100,200,255,0.5),rgba(200,150,255,0.5))] rounded-full mb-4"></div>
+  <h4 className="text-lg font-semibold text-[rgba(200,200,255,0.7)] mb-3 font-['Poppins']">Details</h4>
+  {parseDetails(item.details, "giftcards").length > 0 ? (
+    <ul className="text-[rgba(255,255,255,0.9)] text-base mb-6 space-y-4 w-full font-['Poppins']">
+      {parseDetails(item.details, "giftcards").map((detail, index) => (
+        <li
+          key={index}
+          className="flex items-center gap-3 animate-crystal-fade-up"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <span className="text-2xl text-[rgba(255,255,255,0.7)] flex-shrink-0 transition-transform duration-300 hover:scale-125 hover:[filter:drop-shadow(0_0_5px_rgba(255,255,255,0.5))]">
+            {detail.icon}
+          </span>
+          <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: detail.text }} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p className="text-[rgba(255,255,255,0.6)] mb-6 font-['Poppins']">No details available.</p>
+  )}
+  <div className="mt-auto w-full">
+    <button
+      onClick={(e) => {
+        e.stopPropagation()
+        handleAddToCart(item)
+      }}
+      className="w-full bg-[rgba(100,200,255,0.15)] backdrop-blur-[10px] text-white font-semibold px-4 py-2 rounded-xl transition-all duration-500 border border-[rgba(255,255,255,0.1)] hover:bg-[rgba(100,200,255,0.25)] hover:shadow-[0_0_20px_rgba(100,200,255,0.6)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgba(100,200,255,0.4)] relative overflow-hidden group"
+    >
+      <span className="relative z-10">Add to Cart</span>
+      <span className="absolute inset-0 bg-[linear-gradient(45deg,rgba(100,200,255,0.2),rgba(200,150,255,0.2))] opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-0 group-hover:scale-150 rounded-full"></span>
+    </button>
+  </div>
+</div>
                 </div>
               </div>
             ))}
